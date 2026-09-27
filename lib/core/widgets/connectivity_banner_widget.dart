@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../services/network_service.dart';
 
-/// A global, lightweight banner displayed at the top of the app shell
-/// when internet access is lost. Automatically dismisses when restored.
 class ConnectivityBannerWidget extends StatelessWidget {
   const ConnectivityBannerWidget({super.key});
 
@@ -34,19 +32,20 @@ class ConnectivityBannerWidget extends StatelessWidget {
                       horizontal: 16,
                       vertical: 10,
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.wifi_off_rounded,
                           color: Colors.white,
                           size: 18,
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            'Please check your internet connection.',
-                            style: TextStyle(
+                            'no_internet'.tr,
+                            style: const TextStyle(
+                              fontFamily: 'Cairo',
                               color: Colors.white,
                               fontSize: 13,
                               fontWeight: FontWeight.w600,

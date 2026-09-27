@@ -87,6 +87,8 @@ class AppTranslations extends Translations {
     'splash_curriculum_status': 'تم تحديث المناهج المسجلة',
     'splash_enter_portal': 'الدخول إلى الفضاء التعليمي',
     'splash_offline_compat': 'متوافق مع وضع عدم الاتصال (Offline Ready)',
+    'no_internet': 'لا يوجد اتصال بالإنترنت',
+    'internet_restored': 'تمت استعادة الاتصال بالإنترنت',
   };
 
   static const Map<String, String> en = {
@@ -175,6 +177,8 @@ class AppTranslations extends Translations {
     'splash_curriculum_status': 'Curriculum Loaded',
     'splash_enter_portal': 'Enter Learning Portal',
     'splash_offline_compat': 'Fully Compatible with Offline Mode',
+    'no_internet': 'No internet connection',
+    'internet_restored': 'Internet connection restored',
   };
 
   @override

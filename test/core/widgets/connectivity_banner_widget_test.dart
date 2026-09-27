@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
+import 'package:my_template/core/localization/app_translations.dart';
 import 'package:my_template/core/services/network_service.dart';
 import 'package:my_template/core/widgets/connectivity_banner_widget.dart';
 
@@ -15,8 +16,10 @@ void main() {
   testWidgets('ConnectivityBannerWidget shows banner when offline',
       (WidgetTester tester) async {
     await tester.pumpWidget(
-      const MaterialApp(
-        home: Scaffold(
+      GetMaterialApp(
+        translations: AppTranslations(),
+        locale: const Locale('en'),
+        home: const Scaffold(
           body: Column(
             children: [
               ConnectivityBannerWidget(),
@@ -27,20 +30,17 @@ void main() {
       ),
     );
 
-    // Initial state: connected, banner hidden
-    expect(find.text('Please check your internet connection.'), findsNothing);
+    expect(find.text('No internet connection'), findsNothing);
 
-    // Manually trigger offline status change
     final networkService = Get.find<NetworkService>();
     networkService.isConnectedRx.value = false;
     await tester.pumpAndSettle();
 
-    expect(find.text('Please check your internet connection.'), findsOneWidget);
+    expect(find.text('No internet connection'), findsOneWidget);
 
-    // Restore connection
     networkService.isConnectedRx.value = true;
     await tester.pumpAndSettle();
 
-    expect(find.text('Please check your internet connection.'), findsNothing);
+    expect(find.text('No internet connection'), findsNothing);
   });
 }

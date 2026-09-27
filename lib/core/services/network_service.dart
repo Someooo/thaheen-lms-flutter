@@ -7,15 +7,12 @@ import 'package:get/get.dart';
 
 import '../utils/toast_utils.dart';
 
-/// Service responsible for monitoring global internet connectivity.
-/// Follows Clean Architecture & GetX architecture patterns.
 class NetworkService extends GetxService {
   final Connectivity _connectivity = Connectivity();
   StreamSubscription<List<ConnectivityResult>>? _subscription;
 
   final RxBool _isConnected = true.obs;
 
-  /// Reactive boolean getter for current internet status.
   bool get isConnected => _isConnected.value;
   RxBool get isConnectedRx => _isConnected;
 
@@ -31,11 +28,9 @@ class NetworkService extends GetxService {
     super.onClose();
   }
 
-  Future<void> _initConnectivity() async {
-    // Perform initial check
-    await checkConnection();
+  void _initConnectivity() {
+    checkConnection();
 
-    // Subscribe to connectivity changes
     try {
       _subscription = _connectivity.onConnectivityChanged.listen(
         _handleConnectivityChange,
@@ -59,7 +54,6 @@ class NetworkService extends GetxService {
     _updateStatus(hasInternet);
   }
 
-  /// Manually trigger a connectivity and reachability check.
   Future<bool> checkConnection() async {
     try {
       final results = await _connectivity.checkConnectivity();
@@ -76,7 +70,6 @@ class NetworkService extends GetxService {
     return hasInternet;
   }
 
-  /// Performs a quick DNS lookup to verify true internet access.
   Future<bool> _hasRealInternetAccess() async {
     try {
       final result = await InternetAddress.lookup('example.com')

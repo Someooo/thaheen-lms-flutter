@@ -101,17 +101,16 @@ class ToastUtils {
         Get.closeCurrentSnackbar();
       }
       Get.rawSnackbar(
-        message: 'Please check your internet connection.',
+        message: 'no_internet'.tr,
         backgroundColor: Colors.red.shade700,
         icon: const Icon(Icons.wifi_off_rounded, color: Colors.white),
         snackPosition: SnackPosition.TOP,
         margin: const EdgeInsets.all(12),
         borderRadius: 8,
-        duration: const Duration(days: 1),
-        isDismissible: false,
+        duration: const Duration(seconds: 3),
+        isDismissible: true,
       );
     } catch (_) {
-      // Safe fallback handled by ConnectivityBannerWidget
     }
   }
 
@@ -127,7 +126,7 @@ class ToastUtils {
         Get.closeCurrentSnackbar();
       }
       Get.rawSnackbar(
-        message: 'Internet connection restored.',
+        message: 'internet_restored'.tr,
         backgroundColor: Colors.green.shade700,
         icon: const Icon(Icons.wifi_rounded, color: Colors.white),
         snackPosition: SnackPosition.TOP,
