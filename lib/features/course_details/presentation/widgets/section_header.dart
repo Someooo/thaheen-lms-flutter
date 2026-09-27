@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../config/stitch_colors.dart';
+
 class SectionHeader extends StatelessWidget {
   final String title;
   final int lessonCount;
@@ -16,60 +18,56 @@ class SectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final lessonUnit = lessonCount == 1 ? 'unit_lesson_single'.tr : 'unit_lesson_plural'.tr;
+    final lessonUnit =
+        lessonCount == 1 ? 'unit_lesson_single'.tr : 'unit_lesson_plural'.tr;
 
     return Padding(
-      padding: EdgeInsets.only(bottom: 10.h, top: 4.h),
+      padding: EdgeInsets.only(bottom: 10.h, top: 12.h),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width: 28.w,
-            height: 28.w,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFF00679A), Color(0xFF36A9E1)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(8.r),
-            ),
-            child: Center(
-              child: Text(
-                '${sectionIndex + 1}',
-                style: TextStyle(
-                  fontFamily: 'Cairo',
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 12.sp,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 10.w),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: [
-                Text(
-                  title,
-                  style: theme.textTheme.displayMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14.sp,
+                Container(
+                  width: 8.r,
+                  height: 8.r,
+                  decoration: const BoxDecoration(
+                    color: StitchColors.primary,
+                    shape: BoxShape.circle,
                   ),
                 ),
-                Text(
-                  'section_lesson_count'.trParams({
-                    'count': '$lessonCount',
-                    'unit': lessonUnit,
-                  }),
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    fontSize: 11.sp,
-                    color:
-                        theme.colorScheme.secondary.withValues(alpha: 0.65),
+                SizedBox(width: 8.w),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontFamily: 'Cairo',
+                      color: StitchColors.onSurface,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 13.sp,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+            decoration: BoxDecoration(
+              color: StitchColors.surfaceContainerHigh,
+              borderRadius: BorderRadius.circular(12.r),
+            ),
+            child: Text(
+              '$lessonCount $lessonUnit',
+              style: TextStyle(
+                fontFamily: 'Cairo',
+                color: StitchColors.onSurfaceVariant,
+                fontSize: 9.sp,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ],

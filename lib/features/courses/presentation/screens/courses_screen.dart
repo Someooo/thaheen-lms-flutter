@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../config/app_routes.dart';
+import '../../../../config/stitch_colors.dart';
+import '../../../../core/controllers/language_controller.dart';
 import '../controllers/courses_controller.dart';
 import '../widgets/continue_watching_card.dart';
 import '../widgets/course_card.dart';
@@ -14,18 +16,20 @@ class CoursesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<CoursesController>();
-    final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.scaffoldBackgroundColor,
+      backgroundColor: StitchColors.surface,
       body: SafeArea(
         child: RefreshIndicator(
-          color: const Color(0xFF36A9E1),
+          color: StitchColors.primary,
           onRefresh: controller.loadData,
           child: CustomScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
-              SliverToBoxAdapter(child: _Header(theme: theme)),
+              const SliverToBoxAdapter(child: _TopHeaderBar()),
+              const SliverToBoxAdapter(child: _ClinicalIdentityBar()),
+              const SliverToBoxAdapter(child: _LiveSyncHealthStrip()),
+              const SliverToBoxAdapter(child: _SearchAndFilters()),
               Obx(() {
                 final state = controller.state.value;
 
@@ -54,7 +58,7 @@ class CoursesScreen extends StatelessWidget {
                 }
 
                 return SliverToBoxAdapter(
-                  child: _SuccessBody(controller: controller, theme: theme),
+                  child: _SuccessBody(controller: controller),
                 );
               }),
             ],
@@ -65,54 +69,398 @@ class CoursesScreen extends StatelessWidget {
   }
 }
 
-class _Header extends StatelessWidget {
-  final ThemeData theme;
-
-  const _Header({required this.theme});
+class _TopHeaderBar extends StatelessWidget {
+  const _TopHeaderBar();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(20.w, 24.h, 20.w, 8.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
               Container(
-                width: 40.w,
-                height: 40.w,
+                width: 32.w,
+                height: 32.w,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
+                  borderRadius: BorderRadius.circular(8.r),
                   image: const DecorationImage(
                     image: AssetImage('assets/images/Thaheen logo.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              SizedBox(width: 10.w),
-              Text(
-                'app_title'.tr,
-                style: theme.textTheme.headlineSmall?.copyWith(
-                  color: const Color(0xFF00679A),
-                  fontWeight: FontWeight.w700,
+              SizedBox(width: 8.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'app_title'.tr,
+                    style: TextStyle(
+                      fontFamily: 'Cairo',
+                      color: StitchColors.primary,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w800,
+                      height: 1.1,
+                    ),
+                  ),
+                  Text(
+                    'Home',
+                    style: TextStyle(
+                      fontFamily: 'Cairo',
+                      color: StitchColors.onSurfaceVariant,
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                width: 34.w,
+                height: 34.w,
+                decoration: BoxDecoration(
+                  color: StitchColors.surfaceContainerLowest,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: StitchColors.cardShadow,
+                      blurRadius: 4.r,
+                    ),
+                  ],
+                ),
+                child: Icon(
+                  Icons.notifications_none_rounded,
+                  color: StitchColors.onSurfaceVariant,
+                  size: 18.sp,
+                ),
+              ),
+              SizedBox(width: 8.w),
+              Container(
+                width: 34.w,
+                height: 34.w,
+                decoration: const BoxDecoration(
+                  color: StitchColors.primary,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.person_outline_rounded,
+                  color: StitchColors.onPrimary,
+                  size: 18.sp,
                 ),
               ),
             ],
           ),
-          SizedBox(height: 20.h),
-          Text(
-            'my_courses'.tr,
-            style: theme.textTheme.headlineLarge?.copyWith(
-              fontWeight: FontWeight.w700,
-              fontSize: 26.sp,
-            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ClinicalIdentityBar extends StatelessWidget {
+  const _ClinicalIdentityBar();
+
+  @override
+  Widget build(BuildContext context) {
+    final langController = Get.find<LanguageController>();
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    width: 44.w,
+                    height: 44.w,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [
+                          StitchColors.primary,
+                          StitchColors.primaryContainer,
+                        ],
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                      ),
+                      shape: BoxShape.circle,
+                    ),
+                    padding: EdgeInsets.all(2.r),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: StitchColors.surfaceContainerLowest,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          'ع',
+                          style: TextStyle(
+                            fontFamily: 'Cairo',
+                            color: StitchColors.primary,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    child: Container(
+                      width: 12.r,
+                      height: 12.r,
+                      decoration: BoxDecoration(
+                        color: StitchColors.tertiary,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: StitchColors.surface,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(width: 10.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'مرحباً، د. عمر الفهد',
+                        style: TextStyle(
+                          fontFamily: 'Cairo',
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w800,
+                          color: StitchColors.onSurface,
+                        ),
+                      ),
+                      SizedBox(width: 4.w),
+                      Icon(
+                        Icons.verified_rounded,
+                        color: StitchColors.primary,
+                        size: 14.sp,
+                      ),
+                    ],
+                  ),
+                  Text(
+                    'السنة الثالثة • طب بشري',
+                    style: TextStyle(
+                      fontFamily: 'Cairo',
+                      fontSize: 10.sp,
+                      color: StitchColors.secondary,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                decoration: BoxDecoration(
+                  color: StitchColors.surfaceContainerHigh,
+                  borderRadius: BorderRadius.circular(16.r),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.offline_pin_rounded,
+                      color: StitchColors.tertiary,
+                      size: 13.sp,
+                    ),
+                    SizedBox(width: 4.w),
+                    Text(
+                      'متزامن',
+                      style: TextStyle(
+                        fontFamily: 'Cairo',
+                        fontSize: 9.sp,
+                        color: StitchColors.onSurfaceVariant,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 6.w),
+              GestureDetector(
+                onTap: () {
+                  final isAr = Get.locale?.languageCode != 'en';
+                  langController.changeLanguage(isAr ? 'en' : 'ar');
+                },
+                child: Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                  decoration: BoxDecoration(
+                    color: StitchColors.surfaceContainer,
+                    borderRadius: BorderRadius.circular(16.r),
+                  ),
+                  child: Text(
+                    Get.locale?.languageCode == 'en' ? 'عربي' : 'EN',
+                    style: TextStyle(
+                      fontFamily: 'Cairo',
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w800,
+                      color: StitchColors.onSurfaceVariant,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LiveSyncHealthStrip extends StatelessWidget {
+  const _LiveSyncHealthStrip();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 4.h),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+      decoration: BoxDecoration(
+        color: StitchColors.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(12.r),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 6.r,
+                height: 6.r,
+                decoration: const BoxDecoration(
+                  color: StitchColors.tertiary,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              SizedBox(width: 6.w),
+              Text(
+                'البيانات متزامنة محلياً (Offline Ready)',
+                style: TextStyle(
+                  fontFamily: 'Cairo',
+                  fontSize: 10.sp,
+                  color: StitchColors.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
           Text(
-            'select_course_subtitle'.tr,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.secondary.withValues(alpha: 0.7),
-              fontSize: 13.sp,
+            'Hive Cache v3.4',
+            style: TextStyle(
+              fontFamily: 'Cairo',
+              fontSize: 10.sp,
+              color: StitchColors.outline,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SearchAndFilters extends StatelessWidget {
+  const _SearchAndFilters();
+
+  @override
+  Widget build(BuildContext context) {
+    final chips = ['الكل', 'تشريح', 'فسيولوجي', 'كيمياء حيوية', 'علم الأدوية'];
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+      child: Column(
+        children: [
+          Container(
+            height: 40.h,
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
+            decoration: BoxDecoration(
+              color: StitchColors.surfaceContainerLowest,
+              borderRadius: BorderRadius.circular(12.r),
+              boxShadow: [
+                BoxShadow(
+                  color: StitchColors.cardShadow,
+                  blurRadius: 4.r,
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.search_rounded,
+                  color: StitchColors.onSurfaceVariant,
+                  size: 18.sp,
+                ),
+                SizedBox(width: 8.w),
+                Expanded(
+                  child: Text(
+                    'ابحث عن المحاضرات، الأعضاء، أو المفاهيم الطبية...',
+                    style: TextStyle(
+                      fontFamily: 'Cairo',
+                      fontSize: 10.sp,
+                      color: StitchColors.outline,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Icon(
+                  Icons.tune_rounded,
+                  color: StitchColors.onSurfaceVariant,
+                  size: 16.sp,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 8.h),
+          SizedBox(
+            height: 28.h,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: chips.length,
+              separatorBuilder: (_, __) => SizedBox(width: 6.w),
+              itemBuilder: (context, index) {
+                final isSelected = index == 0;
+                return Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
+                  decoration: BoxDecoration(
+                    color: isSelected
+                        ? StitchColors.primary
+                        : StitchColors.surfaceContainerHigh,
+                    borderRadius: BorderRadius.circular(14.r),
+                  ),
+                  child: Center(
+                    child: Text(
+                      chips[index],
+                      style: TextStyle(
+                        fontFamily: 'Cairo',
+                        fontSize: 10.sp,
+                        fontWeight:
+                            isSelected ? FontWeight.w700 : FontWeight.w500,
+                        color: isSelected
+                            ? Colors.white
+                            : StitchColors.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ],
@@ -123,9 +471,8 @@ class _Header extends StatelessWidget {
 
 class _SuccessBody extends StatelessWidget {
   final CoursesController controller;
-  final ThemeData theme;
 
-  const _SuccessBody({required this.controller, required this.theme});
+  const _SuccessBody({required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +486,42 @@ class _SuccessBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (continueLesson != null && continueCourse != null) ...[
-              SizedBox(height: 8.h),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20.w, 12.h, 20.w, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.play_circle_filled_rounded,
+                          color: StitchColors.primary,
+                          size: 18.sp,
+                        ),
+                        SizedBox(width: 6.w),
+                        Text(
+                          'continue_watching'.tr,
+                          style: TextStyle(
+                            fontFamily: 'Cairo',
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w800,
+                            color: StitchColors.onSurface,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      'جلسة استذكار نشطة',
+                      style: TextStyle(
+                        fontFamily: 'Cairo',
+                        fontSize: 10.sp,
+                        color: StitchColors.secondary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               ContinueWatchingCard(
                 course: continueCourse,
                 lesson: continueLesson,
@@ -148,19 +530,43 @@ class _SuccessBody extends StatelessWidget {
                   arguments: continueCourse,
                 ),
               ),
-              SizedBox(height: 16.h),
             ],
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Text(
-                'all_courses'.tr,
-                style: theme.textTheme.displayMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16.sp,
-                ),
+              padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 8.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.video_library_rounded,
+                        color: StitchColors.primary,
+                        size: 18.sp,
+                      ),
+                      SizedBox(width: 6.w),
+                      Text(
+                        'المقررات المسجلة',
+                        style: TextStyle(
+                          fontFamily: 'Cairo',
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w800,
+                          color: StitchColors.onSurface,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    'عرض الكل (${controller.courses.length})',
+                    style: TextStyle(
+                      fontFamily: 'Cairo',
+                      fontSize: 11.sp,
+                      color: StitchColors.primary,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 12.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
@@ -193,7 +599,6 @@ class _ErrorState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 32.w),
@@ -202,16 +607,20 @@ class _ErrorState extends StatelessWidget {
           children: [
             Icon(
               Icons.cloud_off_rounded,
-              size: 64.sp,
-              color: theme.colorScheme.secondary.withValues(alpha: 0.4),
+              size: 56.sp,
+              color: StitchColors.outlineVariant,
             ),
             SizedBox(height: 16.h),
             Text(
               message,
               textAlign: TextAlign.center,
-              style: theme.textTheme.displayMedium?.copyWith(fontSize: 14.sp),
+              style: TextStyle(
+                fontFamily: 'Cairo',
+                fontSize: 13.sp,
+                color: StitchColors.onSurface,
+              ),
             ),
-            SizedBox(height: 24.h),
+            SizedBox(height: 20.h),
             ElevatedButton.icon(
               onPressed: onRetry,
               icon: const Icon(Icons.refresh_rounded, color: Colors.white),
@@ -220,18 +629,18 @@ class _ErrorState extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Cairo',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 13.sp,
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF36A9E1),
+                backgroundColor: StitchColors.primary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 padding: EdgeInsets.symmetric(
                   horizontal: 24.w,
-                  vertical: 12.h,
+                  vertical: 10.h,
                 ),
               ),
             ),
@@ -247,7 +656,6 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 32.w),
@@ -256,14 +664,18 @@ class _EmptyState extends StatelessWidget {
           children: [
             Icon(
               Icons.menu_book_rounded,
-              size: 64.sp,
-              color: theme.colorScheme.secondary.withValues(alpha: 0.3),
+              size: 56.sp,
+              color: StitchColors.outlineVariant,
             ),
             SizedBox(height: 16.h),
             Text(
               'no_courses_available'.tr,
               textAlign: TextAlign.center,
-              style: theme.textTheme.displayMedium?.copyWith(fontSize: 15.sp),
+              style: TextStyle(
+                fontFamily: 'Cairo',
+                fontSize: 14.sp,
+                color: StitchColors.onSurfaceVariant,
+              ),
             ),
           ],
         ),

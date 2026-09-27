@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../courses/domain/enums/lesson_status.dart';
+import '../../../../config/stitch_colors.dart';
 
 class LessonTile extends StatelessWidget {
   final String title;
@@ -22,28 +23,34 @@ class LessonTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final locked = !isUnlocked;
 
     return GestureDetector(
       onTap: onTap,
       child: AnimatedOpacity(
-        opacity: locked ? 0.55 : 1.0,
+        opacity: locked ? 0.65 : 1.0,
         duration: const Duration(milliseconds: 200),
         child: Container(
-          margin: EdgeInsets.only(bottom: 10.h),
-          padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
+          margin: EdgeInsets.only(bottom: 8.h),
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
           decoration: BoxDecoration(
-            color: theme.colorScheme.onTertiaryContainer,
-            borderRadius: BorderRadius.circular(12.r),
-            border: Border.all(
-              color: _borderColor(status, locked),
-              width: 1.2,
-            ),
+            color: locked
+                ? StitchColors.surfaceContainerLow
+                : StitchColors.surfaceContainerLowest,
+            borderRadius: BorderRadius.circular(14.r),
+            boxShadow: locked
+                ? null
+                : [
+                    BoxShadow(
+                      color: StitchColors.cardShadow,
+                      blurRadius: 6.r,
+                      offset: Offset(0, 2.h),
+                    ),
+                  ],
           ),
           child: Row(
             children: [
-              _StatusIcon(status: status, locked: locked),
+              _LeadingIcon(status: status, locked: locked),
               SizedBox(width: 12.w),
               Expanded(
                 child: Column(
@@ -51,12 +58,14 @@ class LessonTile extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: theme.textTheme.displayMedium?.copyWith(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w600,
+                      style: TextStyle(
+                        fontFamily: 'Cairo',
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
                         color: locked
-                            ? theme.colorScheme.secondary.withValues(alpha: 0.5)
-                            : null,
+                            ? StitchColors.outline
+                            : StitchColors.onSurface,
+                        height: 1.25,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -65,148 +74,242 @@ class LessonTile extends StatelessWidget {
                     Row(
                       children: [
                         Icon(
-                          Icons.timer_outlined,
-                          size: 12.sp,
-                          color: theme.colorScheme.secondary
-                              .withValues(alpha: 0.6),
+                          Icons.schedule_rounded,
+                          size: 11.sp,
+                          color: StitchColors.outline,
                         ),
                         SizedBox(width: 4.w),
                         Text(
                           duration,
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            fontSize: 11.sp,
+                          style: TextStyle(
+                            fontFamily: 'Cairo',
+                            fontSize: 10.sp,
+                            color: StitchColors.outline,
                           ),
                         ),
+                        if (!locked) ...[
+                          SizedBox(width: 8.w),
+                          Text(
+                            'محفوظة في Hive',
+                            style: TextStyle(
+                              fontFamily: 'Cairo',
+                              fontSize: 9.sp,
+                              color: StitchColors.tertiary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ],
                 ),
               ),
               SizedBox(width: 8.w),
-              _TrailingBadge(status: status, locked: locked),
+              _StatusPill(status: status, locked: locked),
             ],
           ),
         ),
       ),
     );
   }
-
-  Color _borderColor(LessonStatus status, bool locked) {
-    if (locked) return const Color(0xFFE0E0E0);
-    switch (status) {
-      case LessonStatus.completed:
-        return const Color(0xFF4CAF50).withValues(alpha: 0.4);
-      case LessonStatus.inProgress:
-        return const Color(0xFF36A9E1).withValues(alpha: 0.5);
-      case LessonStatus.notStarted:
-        return const Color(0xFFE0E0E0);
-    }
-  }
 }
 
-class _StatusIcon extends StatelessWidget {
+class _LeadingIcon extends StatelessWidget {
   final LessonStatus status;
   final bool locked;
 
-  const _StatusIcon({required this.status, required this.locked});
+  const _LeadingIcon({required this.status, required this.locked});
 
   @override
   Widget build(BuildContext context) {
     if (locked) {
       return Container(
-        width: 36.w,
-        height: 36.w,
-        decoration: BoxDecoration(
-          color: Colors.grey.withValues(alpha: 0.12),
+        width: 32.w,
+        height: 32.w,
+        decoration: const BoxDecoration(
+          color: StitchColors.surfaceContainerHigh,
           shape: BoxShape.circle,
         ),
-        child: Icon(Icons.lock_rounded, size: 18.sp, color: Colors.grey),
+        child: Icon(
+          Icons.lock_rounded,
+          size: 15.sp,
+          color: StitchColors.outline,
+        ),
       );
     }
 
     switch (status) {
       case LessonStatus.completed:
         return Container(
-          width: 36.w,
-          height: 36.w,
+          width: 32.w,
+          height: 32.w,
           decoration: BoxDecoration(
-            color: const Color(0xFF4CAF50).withValues(alpha: 0.12),
+            color: StitchColors.tertiaryContainer.withValues(alpha: 0.15),
             shape: BoxShape.circle,
           ),
-          child: Icon(Icons.check_rounded, size: 20.sp,
-              color: const Color(0xFF4CAF50)),
+          child: Icon(
+            Icons.check_rounded,
+            size: 16.sp,
+            color: StitchColors.tertiary,
+          ),
         );
       case LessonStatus.inProgress:
         return Container(
-          width: 36.w,
-          height: 36.w,
-          decoration: BoxDecoration(
-            color: const Color(0xFF36A9E1).withValues(alpha: 0.12),
+          width: 32.w,
+          height: 32.w,
+          decoration: const BoxDecoration(
+            color: StitchColors.primaryFixed,
             shape: BoxShape.circle,
           ),
-          child: Icon(Icons.play_arrow_rounded, size: 22.sp,
-              color: const Color(0xFF36A9E1)),
+          child: Icon(
+            Icons.play_arrow_rounded,
+            size: 18.sp,
+            color: StitchColors.onPrimaryFixedVariant,
+          ),
         );
       case LessonStatus.notStarted:
         return Container(
-          width: 36.w,
-          height: 36.w,
-          decoration: BoxDecoration(
-            color: Colors.grey.withValues(alpha: 0.1),
+          width: 32.w,
+          height: 32.w,
+          decoration: const BoxDecoration(
+            color: StitchColors.surfaceContainer,
             shape: BoxShape.circle,
           ),
-          child: Icon(Icons.play_circle_outline_rounded, size: 20.sp,
-              color: Colors.grey.shade500),
+          child: Icon(
+            Icons.play_circle_outline_rounded,
+            size: 16.sp,
+            color: StitchColors.secondary,
+          ),
         );
     }
   }
 }
 
-class _TrailingBadge extends StatelessWidget {
+class _StatusPill extends StatelessWidget {
   final LessonStatus status;
   final bool locked;
 
-  const _TrailingBadge({required this.status, required this.locked});
+  const _StatusPill({required this.status, required this.locked});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     if (locked) {
-      return Text(
-        'status_locked'.tr,
-        style: theme.textTheme.bodySmall?.copyWith(
-          color: Colors.grey,
-          fontSize: 10.sp,
-          fontWeight: FontWeight.w600,
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+        decoration: BoxDecoration(
+          color: StitchColors.surfaceContainerHigh,
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.lock_outline_rounded,
+              size: 11.sp,
+              color: StitchColors.outline,
+            ),
+            SizedBox(width: 3.w),
+            Text(
+              'status_locked'.tr,
+              style: TextStyle(
+                fontFamily: 'Cairo',
+                color: StitchColors.outline,
+                fontSize: 9.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
         ),
       );
     }
 
     switch (status) {
       case LessonStatus.completed:
-        return Text(
-          'status_completed'.tr,
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: const Color(0xFF4CAF50),
-            fontSize: 10.sp,
-            fontWeight: FontWeight.w600,
+        return Container(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+          decoration: BoxDecoration(
+            color: StitchColors.tertiaryFixed.withValues(alpha: 0.35),
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.check_circle_rounded,
+                size: 12.sp,
+                color: StitchColors.tertiary,
+              ),
+              SizedBox(width: 3.w),
+              Text(
+                'status_completed'.tr,
+                style: TextStyle(
+                  fontFamily: 'Cairo',
+                  color: StitchColors.tertiary,
+                  fontSize: 9.sp,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
           ),
         );
       case LessonStatus.inProgress:
-        return Text(
-          'status_in_progress'.tr,
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: const Color(0xFF36A9E1),
-            fontSize: 10.sp,
-            fontWeight: FontWeight.w600,
+        return Container(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+          decoration: BoxDecoration(
+            color: StitchColors.primaryFixed.withValues(alpha: 0.6),
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 5.r,
+                height: 5.r,
+                decoration: const BoxDecoration(
+                  color: StitchColors.primaryContainer,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              SizedBox(width: 4.w),
+              Text(
+                'status_in_progress'.tr,
+                style: TextStyle(
+                  fontFamily: 'Cairo',
+                  color: StitchColors.onPrimaryFixedVariant,
+                  fontSize: 9.sp,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
           ),
         );
       case LessonStatus.notStarted:
-        return Icon(
-          Icons.arrow_forward_ios_rounded,
-          size: 14.sp,
-          color: Colors.grey.shade400,
+        return Container(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+          decoration: BoxDecoration(
+            color: StitchColors.surfaceContainer,
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.play_circle_rounded,
+                size: 11.sp,
+                color: StitchColors.secondary,
+              ),
+              SizedBox(width: 3.w),
+              Text(
+                'جاهز للبدء',
+                style: TextStyle(
+                  fontFamily: 'Cairo',
+                  color: StitchColors.secondary,
+                  fontSize: 9.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
         );
     }
   }

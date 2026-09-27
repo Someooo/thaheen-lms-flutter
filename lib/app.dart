@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_template/config/app_routes.dart';
@@ -20,7 +21,6 @@ class AppEntrypoint extends StatelessWidget {
         return GetMaterialApp(
           title: 'Thaheen',
           debugShowCheckedModeBanner: false,
-
           initialRoute: AppRoutes.initial,
           getPages: AppRoutes.pages,
           theme: AppTheme.light,
@@ -30,6 +30,11 @@ class AppEntrypoint extends StatelessWidget {
           locale: Get.find<LanguageController>().locale,
           fallbackLocale: LanguageController.fallbackLocale,
           supportedLocales: LanguageController.supportedLocales,
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
           builder: (context, child) {
             return Scaffold(
               resizeToAvoidBottomInset: false,
