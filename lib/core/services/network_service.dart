@@ -12,6 +12,7 @@ class NetworkService extends GetxService {
   StreamSubscription<List<ConnectivityResult>>? _subscription;
 
   final RxBool _isConnected = true.obs;
+  bool _isInitialCheck = true;
 
   bool get isConnected => _isConnected.value;
   RxBool get isConnectedRx => _isConnected;
@@ -45,7 +46,13 @@ class NetworkService extends GetxService {
 
   Future<void> _handleConnectivityChange(
       List<ConnectivityResult> results) async {
-    if (results.contains(ConnectivityResult.none)) {
+    final hasInterface = results.any((r) =>
+        r == ConnectivityResult.wifi ||
+        r == ConnectivityResult.mobile ||
+        r == ConnectivityResult.ethernet ||
+        r == ConnectivityResult.vpn);
+
+    if (!hasInterface) {
       _updateStatus(false);
       return;
     }
@@ -57,7 +64,13 @@ class NetworkService extends GetxService {
   Future<bool> checkConnection() async {
     try {
       final results = await _connectivity.checkConnectivity();
-      if (results.contains(ConnectivityResult.none)) {
+      final hasInterface = results.any((r) =>
+          r == ConnectivityResult.wifi ||
+          r == ConnectivityResult.mobile ||
+          r == ConnectivityResult.ethernet ||
+          r == ConnectivityResult.vpn);
+
+      if (!hasInterface) {
         _updateStatus(false);
         return false;
       }
@@ -72,30 +85,54 @@ class NetworkService extends GetxService {
 
   Future<bool> _hasRealInternetAccess() async {
     try {
-      final result = await InternetAddress.lookup('example.com')
-          .timeout(const Duration(seconds: 3));
-      return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
-    } on SocketException catch (_) {
-      return false;
-    } on TimeoutException catch (_) {
-      return false;
-    } catch (e) {
-      if (kDebugMode) {
-        debugPrint('Internet lookup error: $e');
+      final socket = await Socket.connect(
+        '8.8.8.8',
+        53,
+        timeout: const Duration(milliseconds: 2500),
+      );
+      socket.destroy();
+      return true;
+    } catch (_) {}
+
+    try {
+      final socket = await Socket.connect(
+        '1.1.1.1',
+        53,
+        timeout: const Duration(milliseconds: 2500),
+      );
+      socket.destroy();
+      return true;
+    } catch (_) {}
+
+    try {
+      final result = await InternetAddress.lookup('google.com')
+          .timeout(const Duration(milliseconds: 2500));
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        return true;
       }
-      return false;
-    }
+    } catch (_) {}
+
+    return false;
   }
 
   void _updateStatus(bool newStatus) {
-    if (_isConnected.value == newStatus) return;
+    final wasInitial = _isInitialCheck;
+    _isInitialCheck = false;
 
+    if (!wasInitial && _isConnected.value == newStatus) return;
+
+    final previousStatus = _isConnected.value;
     _isConnected.value = newStatus;
 
-    if (!newStatus) {
-      ToastUtils.showNoInternetSnackbar();
+    if (newStatus) {
+      ToastUtils.dismissSnackbar();
+      if (!wasInitial && !previousStatus) {
+        ToastUtils.showInternetRestoredSnackbar();
+      }
     } else {
-      ToastUtils.showInternetRestoredSnackbar();
+      if (!wasInitial) {
+        ToastUtils.showNoInternetSnackbar();
+      }
     }
   }
 }

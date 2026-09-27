@@ -29,7 +29,7 @@ class CoursesScreen extends StatelessWidget {
             slivers: [
               const SliverToBoxAdapter(child: CoursesHeader()),
               const SliverToBoxAdapter(child: ClinicalIdentityBar()),
-              // const SliverToBoxAdapter(child: CourseSearchBarWithFilters()),
+              const SliverToBoxAdapter(child: CourseSearchBarWithFilters()),
               Obx(() {
                 final state = controller.state.value;
 
