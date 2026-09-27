@@ -54,42 +54,18 @@ class CoursesHeader extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            children: [
-              Container(
-                width: 34.w,
-                height: 34.w,
-                decoration: BoxDecoration(
-                  color: StitchColors.surfaceContainerLowest,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: StitchColors.cardShadow,
-                      blurRadius: 4.r,
-                    ),
-                  ],
-                ),
-                child: Icon(
-                  Icons.notifications_none_rounded,
-                  color: StitchColors.onSurfaceVariant,
-                  size: 18.sp,
-                ),
-              ),
-              SizedBox(width: 8.w),
-              Container(
-                width: 34.w,
-                height: 34.w,
-                decoration: const BoxDecoration(
-                  color: StitchColors.primary,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.person_outline_rounded,
-                  color: StitchColors.onPrimary,
-                  size: 18.sp,
-                ),
-              ),
-            ],
+          Container(
+            width: 34.w,
+            height: 34.w,
+            decoration: const BoxDecoration(
+              color: StitchColors.primary,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.person_outline_rounded,
+              color: StitchColors.onPrimary,
+              size: 18.sp,
+            ),
           ),
         ],
       ),

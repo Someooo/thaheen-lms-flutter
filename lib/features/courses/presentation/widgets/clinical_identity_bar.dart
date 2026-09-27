@@ -108,59 +108,28 @@ class ClinicalIdentityBar extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  color: StitchColors.surfaceContainerHigh,
-                  borderRadius: BorderRadius.circular(16.r),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.offline_pin_rounded,
-                      color: StitchColors.tertiary,
-                      size: 13.sp,
-                    ),
-                    SizedBox(width: 4.w),
-                    Text(
-                      'synced_status'.tr,
-                      style: TextStyle(
-                        fontFamily: 'Cairo',
-                        fontSize: 9.sp,
-                        color: StitchColors.onSurfaceVariant,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
+          GestureDetector(
+            onTap: () {
+              final isAr = Get.locale?.languageCode != 'en';
+              langController.changeLanguage(isAr ? 'en' : 'ar');
+            },
+            child: Container(
+              padding:
+                  EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+              decoration: BoxDecoration(
+                color: StitchColors.surfaceContainer,
+                borderRadius: BorderRadius.circular(16.r),
+              ),
+              child: Text(
+                Get.locale?.languageCode == 'en' ? 'عربي' : 'EN',
+                style: TextStyle(
+                  fontFamily: 'Cairo',
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w800,
+                  color: StitchColors.onSurfaceVariant,
                 ),
               ),
-              SizedBox(width: 6.w),
-              GestureDetector(
-                onTap: () {
-                  final isAr = Get.locale?.languageCode != 'en';
-                  langController.changeLanguage(isAr ? 'en' : 'ar');
-                },
-                child: Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                  decoration: BoxDecoration(
-                    color: StitchColors.surfaceContainer,
-                    borderRadius: BorderRadius.circular(16.r),
-                  ),
-                  child: Text(
-                    Get.locale?.languageCode == 'en' ? 'عربي' : 'EN',
-                    style: TextStyle(
-                      fontFamily: 'Cairo',
-                      fontSize: 10.sp,
-                      fontWeight: FontWeight.w800,
-                      color: StitchColors.onSurfaceVariant,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ],
       ),

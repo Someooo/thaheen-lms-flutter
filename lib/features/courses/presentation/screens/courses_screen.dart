@@ -10,7 +10,6 @@ import '../widgets/courses_error_state.dart';
 import '../widgets/courses_header.dart';
 import '../widgets/courses_loading_shimmer.dart';
 import '../widgets/enrolled_courses_list.dart';
-import '../widgets/live_sync_health_strip.dart';
 
 class CoursesScreen extends StatelessWidget {
   const CoursesScreen({super.key});
@@ -30,8 +29,7 @@ class CoursesScreen extends StatelessWidget {
             slivers: [
               const SliverToBoxAdapter(child: CoursesHeader()),
               const SliverToBoxAdapter(child: ClinicalIdentityBar()),
-              const SliverToBoxAdapter(child: LiveSyncHealthStrip()),
-              const SliverToBoxAdapter(child: CourseSearchBarWithFilters()),
+              // const SliverToBoxAdapter(child: CourseSearchBarWithFilters()),
               Obx(() {
                 final state = controller.state.value;
 
