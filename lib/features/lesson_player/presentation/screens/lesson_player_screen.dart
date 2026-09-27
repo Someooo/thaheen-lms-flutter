@@ -70,7 +70,7 @@ class LessonPlayerScreen extends StatelessWidget {
                       onPressed: controller.retry,
                       icon: const Icon(Icons.refresh_rounded, color: Colors.white),
                       label: Text(
-                        'إعادة المحاولة',
+                        'retry'.tr,
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           color: Colors.white,
@@ -195,7 +195,7 @@ class LessonPlayerScreen extends StatelessWidget {
                               size: 12.sp, color: const Color(0xFF4CAF50)),
                           SizedBox(width: 4.w),
                           Text(
-                            'مكتمل',
+                            'status_completed'.tr,
                             style: TextStyle(
                               fontFamily: 'Cairo',
                               color: const Color(0xFF4CAF50),
@@ -287,7 +287,7 @@ class LessonPlayerScreen extends StatelessWidget {
                       size: 20.sp,
                     ),
                     label: Text(
-                      'الدرس التالي',
+                      'next_lesson'.tr,
                       style: TextStyle(
                         fontFamily: 'Cairo',
                         fontSize: 12.sp,

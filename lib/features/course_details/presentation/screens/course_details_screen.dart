@@ -44,7 +44,7 @@ class CourseDetailsScreen extends StatelessWidget {
                 color: const Color(0xFF36A9E1), size: 22.sp),
             SizedBox(width: 8.w),
             Text(
-              'الدرس مقفل',
+              'lesson_locked_title'.tr,
               style: theme.textTheme.displayMedium?.copyWith(
                 fontWeight: FontWeight.w700,
                 fontSize: 15.sp,
@@ -53,14 +53,14 @@ class CourseDetailsScreen extends StatelessWidget {
           ],
         ),
         content: Text(
-          'يجب إكمال الدرس السابق أولاً لفتح هذا الدرس.',
+          'lesson_locked_message'.tr,
           style: theme.textTheme.bodyMedium?.copyWith(fontSize: 13.sp),
         ),
         actions: [
           TextButton(
             onPressed: () => Get.back<void>(),
             child: Text(
-              'حسناً',
+              'ok'.tr,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 color: const Color(0xFF36A9E1),

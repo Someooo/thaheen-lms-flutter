@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../controllers/lesson_player_controller.dart';
 
@@ -91,7 +92,7 @@ class PlaybackSpeedSheet extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
             child: Text(
-              'سرعة التشغيل',
+              'playback_speed'.tr,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 color: Colors.white,

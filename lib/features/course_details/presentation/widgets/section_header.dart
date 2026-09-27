@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
@@ -16,6 +17,7 @@ class SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final lessonUnit = lessonCount == 1 ? 'unit_lesson_single'.tr : 'unit_lesson_plural'.tr;
 
     return Padding(
       padding: EdgeInsets.only(bottom: 10.h, top: 4.h),
@@ -57,7 +59,10 @@ class SectionHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '$lessonCount ${lessonCount == 1 ? 'درس' : 'دروس'}',
+                  'section_lesson_count'.trParams({
+                    'count': '$lessonCount',
+                    'unit': lessonUnit,
+                  }),
                   style: theme.textTheme.bodySmall?.copyWith(
                     fontSize: 11.sp,
                     color:

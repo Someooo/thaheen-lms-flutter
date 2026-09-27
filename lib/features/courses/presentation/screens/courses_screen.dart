@@ -92,7 +92,7 @@ class _Header extends StatelessWidget {
               ),
               SizedBox(width: 10.w),
               Text(
-                'ذاهين',
+                'app_title'.tr,
                 style: theme.textTheme.headlineSmall?.copyWith(
                   color: const Color(0xFF00679A),
                   fontWeight: FontWeight.w700,
@@ -102,14 +102,14 @@ class _Header extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
           Text(
-            'دوراتي',
+            'my_courses'.tr,
             style: theme.textTheme.headlineLarge?.copyWith(
               fontWeight: FontWeight.w700,
               fontSize: 26.sp,
             ),
           ),
           Text(
-            'اختر دورة وابدأ التعلم',
+            'select_course_subtitle'.tr,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.secondary.withValues(alpha: 0.7),
               fontSize: 13.sp,
@@ -153,7 +153,7 @@ class _SuccessBody extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Text(
-                'جميع الدورات',
+                'all_courses'.tr,
                 style: theme.textTheme.displayMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                   fontSize: 16.sp,
@@ -216,7 +216,7 @@ class _ErrorState extends StatelessWidget {
               onPressed: onRetry,
               icon: const Icon(Icons.refresh_rounded, color: Colors.white),
               label: Text(
-                'إعادة المحاولة',
+                'retry'.tr,
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Cairo',
@@ -261,7 +261,7 @@ class _EmptyState extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             Text(
-              'لا توجد دورات متاحة حاليًا',
+              'no_courses_available'.tr,
               textAlign: TextAlign.center,
               style: theme.textTheme.displayMedium?.copyWith(fontSize: 15.sp),
             ),

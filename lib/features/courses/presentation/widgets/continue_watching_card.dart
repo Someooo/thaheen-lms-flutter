@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../domain/entities/course.dart';
 import '../../domain/entities/lesson.dart';
@@ -62,7 +63,7 @@ class ContinueWatchingCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'متابعة المشاهدة',
+                      'continue_watching'.tr,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: Colors.white.withValues(alpha: 0.8),
                         fontWeight: FontWeight.w500,

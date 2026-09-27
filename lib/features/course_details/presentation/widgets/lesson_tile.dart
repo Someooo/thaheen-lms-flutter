@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../courses/domain/enums/lesson_status.dart';
 
@@ -173,7 +174,7 @@ class _TrailingBadge extends StatelessWidget {
 
     if (locked) {
       return Text(
-        'مقفل',
+        'status_locked'.tr,
         style: theme.textTheme.bodySmall?.copyWith(
           color: Colors.grey,
           fontSize: 10.sp,
@@ -185,7 +186,7 @@ class _TrailingBadge extends StatelessWidget {
     switch (status) {
       case LessonStatus.completed:
         return Text(
-          'مكتمل',
+          'status_completed'.tr,
           style: theme.textTheme.bodySmall?.copyWith(
             color: const Color(0xFF4CAF50),
             fontSize: 10.sp,
@@ -194,7 +195,7 @@ class _TrailingBadge extends StatelessWidget {
         );
       case LessonStatus.inProgress:
         return Text(
-          'جاري',
+          'status_in_progress'.tr,
           style: theme.textTheme.bodySmall?.copyWith(
             color: const Color(0xFF36A9E1),
             fontSize: 10.sp,

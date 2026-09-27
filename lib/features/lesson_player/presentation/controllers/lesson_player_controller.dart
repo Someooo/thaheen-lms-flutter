@@ -116,7 +116,7 @@ class LessonPlayerController extends GetxController {
     } catch (e) {
       isLoading.value = false;
       hasError.value = true;
-      errorMessage.value = 'تعذر تشغيل الفيديو، يرجى المحاولة مرة أخرى';
+      errorMessage.value = 'error_playing_video'.tr;
     }
   }
 

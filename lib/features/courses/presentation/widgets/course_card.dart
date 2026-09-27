@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../domain/entities/course.dart';
 
@@ -21,6 +22,7 @@ class CourseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final progressPercent = (progress * 100).round();
+    final lessonUnit = lessonCount == 1 ? 'unit_lesson_single'.tr : 'unit_lesson_plural'.tr;
 
     return GestureDetector(
       onTap: onTap,
@@ -103,7 +105,10 @@ class CourseCard extends StatelessWidget {
                         ),
                         SizedBox(width: 4.w),
                         Text(
-                          '$lessonCount درس',
+                          'section_lesson_count'.trParams({
+                            'count': '$lessonCount',
+                            'unit': lessonUnit,
+                          }),
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontSize: 12.sp,
                           ),

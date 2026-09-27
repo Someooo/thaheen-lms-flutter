@@ -1,14 +1,11 @@
-// Defines the root widget configuring theme, localization, and routing for the app shell.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_template/config/app_routes.dart';
 import 'package:my_template/config/app_theme.dart';
-import 'package:my_template/core/localization/app_localization.dart';
-import 'package:my_template/core/controllers/theme_controller.dart';
 import 'package:my_template/core/controllers/language_controller.dart';
-
+import 'package:my_template/core/controllers/theme_controller.dart';
+import 'package:my_template/core/localization/app_translations.dart';
 import 'package:my_template/core/widgets/connectivity_banner_widget.dart';
 
 class AppEntrypoint extends StatelessWidget {
@@ -29,9 +26,10 @@ class AppEntrypoint extends StatelessWidget {
           theme: AppTheme.light,
           darkTheme: AppTheme.dark,
           themeMode: Get.find<ThemeController>().themeMode,
-          translations: AppLocalization(),
+          translations: AppTranslations(),
           locale: Get.find<LanguageController>().locale,
           fallbackLocale: LanguageController.fallbackLocale,
+          supportedLocales: LanguageController.supportedLocales,
           builder: (context, child) {
             return Scaffold(
               resizeToAvoidBottomInset: false,
