@@ -1,0 +1,98 @@
+[
+  {
+    "id": "course_anatomy",
+    "title": "أساسيات علم التشريح",
+    "instructor": "د. أحمد محمد",
+    "thumbnail": "assets/images/anatomy_course.jpg",
+    "sections": [
+      {
+        "id": "section_anatomy_intro",
+        "title": "مقدمة في علم التشريح",
+        "lessons": [
+          {
+            "id": "lesson_anatomy_intro_01",
+            "title": "مقدمة عن جسم الإنسان",
+            "duration": "00:15",
+            "videoAsset": "assets/videos/human_skeleton_anatomy.mp4",
+            "order": 1
+          },
+          {
+            "id": "lesson_anatomy_intro_02",
+            "title": "مستويات الجسم",
+            "duration": "00:20",
+            "videoAsset": "assets/videos/human_skeleton_anatomy.mp4",
+            "order": 2
+          }
+        ]
+      },
+      {
+        "id": "section_anatomy_skeletal",
+        "title": "الجهاز الهيكلي",
+        "lessons": [
+          {
+            "id": "lesson_anatomy_skeletal_01",
+            "title": "مقدمة عن العظام",
+            "duration": "00:25",
+            "videoAsset": "assets/videos/skeleton_human_body.mp4",
+            "order": 3
+          },
+          {
+            "id": "lesson_anatomy_skeletal_02",
+            "title": "أنواع المفاصل",
+            "duration": "00:20",
+            "videoAsset": "assets/videos/skeleton_human_body.mp4",
+            "order": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "course_biology",
+    "title": "مبادئ علم الأحياء",
+    "instructor": "د. سارة خالد",
+    "thumbnail": "assets/images/biology_course.jpg",
+    "sections": [
+      {
+        "id": "section_biology_cell_basics",
+        "title": "أساسيات الخلية",
+        "lessons": [
+          {
+            "id": "lesson_biology_cell_01",
+            "title": "مقدمة في الخلية",
+            "duration": "00:42",
+            "videoAsset": "assets/videos/medical_cells_biology.mp4",
+            "order": 1
+          },
+          {
+            "id": "lesson_biology_cell_02",
+            "title": "مكونات الخلية",
+            "duration": "00:30",
+            "videoAsset": "assets/videos/medical_cells_biology.mp4",
+            "order": 2
+          }
+        ]
+      },
+      {
+        "id": "section_biology_cell_functions",
+        "title": "وظائف الخلية",
+        "lessons": [
+          {
+            "id": "lesson_biology_cell_03",
+            "title": "إنتاج الطاقة",
+            "duration": "00:25",
+            "videoAsset": "assets/videos/medical_cells_biology.mp4",
+            "order": 3
+          },
+          {
+            "id": "lesson_biology_cell_04",
+            "title": "الانقسام الخلوي",
+            "duration": "00:30",
+            "videoAsset": "assets/videos/medical_cells_biology.mp4",
+            "order": 4
+          }
+        ]
+      }
+    ]
+  }
+]
