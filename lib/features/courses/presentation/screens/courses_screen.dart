@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../config/app_routes.dart';
 import '../controllers/courses_controller.dart';
 import '../widgets/continue_watching_card.dart';
 import '../widgets/course_card.dart';
@@ -142,7 +143,10 @@ class _SuccessBody extends StatelessWidget {
               ContinueWatchingCard(
                 course: continueCourse,
                 lesson: continueLesson,
-                onTap: null,
+                onTap: () => Get.toNamed<void>(
+                  AppRoutes.courseDetails,
+                  arguments: continueCourse,
+                ),
               ),
               SizedBox(height: 16.h),
             ],
@@ -166,7 +170,10 @@ class _SuccessBody extends StatelessWidget {
                     course: course,
                     progress: controller.progressFor(course),
                     lessonCount: lessons.length,
-                    onTap: null,
+                    onTap: () => Get.toNamed<void>(
+                      AppRoutes.courseDetails,
+                      arguments: course,
+                    ),
                   );
                 }).toList(),
               ),
