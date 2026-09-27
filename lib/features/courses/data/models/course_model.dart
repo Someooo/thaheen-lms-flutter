@@ -1,17 +1,18 @@
+import '../../../../core/localization/localized_content.dart';
 import '../../domain/entities/course.dart';
 import 'section_model.dart';
 
 class CourseModel {
   final String id;
-  final String title;
-  final String instructor;
+  final LocalizedContent localizedTitle;
+  final LocalizedContent localizedInstructor;
   final String thumbnail;
   final List<SectionModel> sections;
 
   const CourseModel({
     required this.id,
-    required this.title,
-    required this.instructor,
+    required this.localizedTitle,
+    required this.localizedInstructor,
     required this.thumbnail,
     required this.sections,
   });
@@ -23,8 +24,8 @@ class CourseModel {
 
     return CourseModel(
       id: json['id'] as String,
-      title: json['title'] as String,
-      instructor: json['instructor'] as String,
+      localizedTitle: LocalizedContent.fromJson(json['title']),
+      localizedInstructor: LocalizedContent.fromJson(json['instructor']),
       thumbnail: json['thumbnail'] as String,
       sections: sectionList,
     );
@@ -33,8 +34,8 @@ class CourseModel {
   Course toEntity() {
     return Course(
       id: id,
-      title: title,
-      instructor: instructor,
+      localizedTitle: localizedTitle,
+      localizedInstructor: localizedInstructor,
       thumbnail: thumbnail,
       sections: sections.map((s) => s.toEntity()).toList(),
     );

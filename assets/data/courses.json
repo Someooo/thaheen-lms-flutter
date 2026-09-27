@@ -1,24 +1,39 @@
 [
   {
     "id": "course_anatomy",
-    "title": "أساسيات علم التشريح",
-    "instructor": "د. أحمد محمد",
+    "title": {
+      "ar": "أساسيات علم التشريح",
+      "en": "Fundamentals of Anatomy"
+    },
+    "instructor": {
+      "ar": "د. أحمد محمد",
+      "en": "Dr. Ahmed Mohammed"
+    },
     "thumbnail": "assets/images/anatomy_course.jpg",
     "sections": [
       {
         "id": "section_anatomy_intro",
-        "title": "مقدمة في علم التشريح",
+        "title": {
+          "ar": "مقدمة في علم التشريح",
+          "en": "Introduction to Anatomy"
+        },
         "lessons": [
           {
             "id": "lesson_anatomy_intro_01",
-            "title": "مقدمة عن جسم الإنسان",
+            "title": {
+              "ar": "مقدمة عن جسم الإنسان",
+              "en": "Introduction to the Human Body"
+            },
             "duration": "00:15",
             "videoAsset": "assets/videos/human_skeleton_anatomy.mp4",
             "order": 1
           },
           {
             "id": "lesson_anatomy_intro_02",
-            "title": "مستويات الجسم",
+            "title": {
+              "ar": "مستويات الجسم",
+              "en": "Anatomical Planes"
+            },
             "duration": "00:20",
             "videoAsset": "assets/videos/human_skeleton_anatomy.mp4",
             "order": 2
@@ -27,18 +42,27 @@
       },
       {
         "id": "section_anatomy_skeletal",
-        "title": "الجهاز الهيكلي",
+        "title": {
+          "ar": "الجهاز الهيكلي",
+          "en": "Skeletal System"
+        },
         "lessons": [
           {
             "id": "lesson_anatomy_skeletal_01",
-            "title": "مقدمة عن العظام",
+            "title": {
+              "ar": "مقدمة عن العظام",
+              "en": "Introduction to Bones"
+            },
             "duration": "00:25",
             "videoAsset": "assets/videos/skeleton_human_body.mp4",
             "order": 3
           },
           {
             "id": "lesson_anatomy_skeletal_02",
-            "title": "أنواع المفاصل",
+            "title": {
+              "ar": "أنواع المفاصل",
+              "en": "Types of Joints"
+            },
             "duration": "00:20",
             "videoAsset": "assets/videos/skeleton_human_body.mp4",
             "order": 4
@@ -49,24 +73,39 @@
   },
   {
     "id": "course_biology",
-    "title": "مبادئ علم الأحياء",
-    "instructor": "د. سارة خالد",
+    "title": {
+      "ar": "مبادئ علم الأحياء",
+      "en": "Principles of Biology"
+    },
+    "instructor": {
+      "ar": "د. سارة خالد",
+      "en": "Dr. Sarah Khaled"
+    },
     "thumbnail": "assets/images/biology_course.jpg",
     "sections": [
       {
         "id": "section_biology_cell_basics",
-        "title": "أساسيات الخلية",
+        "title": {
+          "ar": "أساسيات الخلية",
+          "en": "Cell Basics"
+        },
         "lessons": [
           {
             "id": "lesson_biology_cell_01",
-            "title": "مقدمة في الخلية",
+            "title": {
+              "ar": "مقدمة في الخلية",
+              "en": "Introduction to Cells"
+            },
             "duration": "00:42",
             "videoAsset": "assets/videos/medical_cells_biology.mp4",
             "order": 1
           },
           {
             "id": "lesson_biology_cell_02",
-            "title": "مكونات الخلية",
+            "title": {
+              "ar": "مكونات الخلية",
+              "en": "Cellular Components"
+            },
             "duration": "00:30",
             "videoAsset": "assets/videos/medical_cells_biology.mp4",
             "order": 2
@@ -75,18 +114,27 @@
       },
       {
         "id": "section_biology_cell_functions",
-        "title": "وظائف الخلية",
+        "title": {
+          "ar": "وظائف الخلية",
+          "en": "Cell Functions"
+        },
         "lessons": [
           {
             "id": "lesson_biology_cell_03",
-            "title": "إنتاج الطاقة",
+            "title": {
+              "ar": "إنتاج الطاقة",
+              "en": "Energy Production"
+            },
             "duration": "00:25",
             "videoAsset": "assets/videos/medical_cells_biology.mp4",
             "order": 3
           },
           {
             "id": "lesson_biology_cell_04",
-            "title": "الانقسام الخلوي",
+            "title": {
+              "ar": "الانقسام الخلوي",
+              "en": "Cell Division"
+            },
             "duration": "00:30",
             "videoAsset": "assets/videos/medical_cells_biology.mp4",
             "order": 4

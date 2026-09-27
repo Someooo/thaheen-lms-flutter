@@ -103,8 +103,8 @@ class CourseDetailsScreen extends StatelessWidget {
 
         return CustomScrollView(
           slivers: [
-            _TopHeader(),
-            SliverToBoxAdapter(
+            const _TopHeader(),
+            const SliverToBoxAdapter(
               child: _TopActionStrip(),
             ),
             SliverToBoxAdapter(
@@ -161,6 +161,8 @@ class CourseDetailsScreen extends StatelessWidget {
 }
 
 class _TopHeader extends StatelessWidget {
+  const _TopHeader();
+
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -209,7 +211,7 @@ class _TopHeader extends StatelessWidget {
                   ),
                   SizedBox(width: 8.w),
                   Text(
-                    'تفاصيل المقرر',
+                    'course_details_title'.tr,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       color: StitchColors.onSurface,
@@ -241,6 +243,8 @@ class _TopHeader extends StatelessWidget {
 }
 
 class _TopActionStrip extends StatelessWidget {
+  const _TopActionStrip();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -263,7 +267,7 @@ class _TopActionStrip extends StatelessWidget {
                 ),
                 SizedBox(width: 4.w),
                 Text(
-                  'محتوى طبي معتمد',
+                  'certified_medical_content'.tr,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     color: StitchColors.onSurfaceVariant,
@@ -289,7 +293,7 @@ class _TopActionStrip extends StatelessWidget {
                 ),
                 SizedBox(width: 4.w),
                 Text(
-                  'تحميل للدراسة أوفلاين',
+                  'download_offline_study'.tr,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     color: StitchColors.onSecondaryContainer,
@@ -383,7 +387,7 @@ class _HeroMediaCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14.r),
                   ),
                   child: Text(
-                    'السنة التحضيرية والطب البشري',
+                    'prep_year_medicine'.tr,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       color: StitchColors.onPrimaryContainer,
@@ -412,7 +416,7 @@ class _HeroMediaCard extends StatelessWidget {
                       ),
                       SizedBox(width: 4.w),
                       Text(
-                        'Hive Cache جاهز',
+                        'hive_cache_ready'.tr,
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           color: StitchColors.inverseOnSurface,
@@ -437,7 +441,7 @@ class _HeroMediaCard extends StatelessWidget {
             ),
           ),
           Text(
-            'Clinical Medicine Series • Thaheen',
+            'series_subtitle'.tr,
             style: TextStyle(
               fontFamily: 'Cairo',
               color: StitchColors.outlineVariant,
@@ -484,7 +488,7 @@ class _HeroMediaCard extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    'أستاذ مشارك واستشاري سريري',
+                    'instructor_title'.tr,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       color: StitchColors.outlineVariant,
@@ -505,15 +509,18 @@ class _HeroMediaCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _MetricPill(title: '16 ساعة', subtitle: 'تدريب سريري'),
+                _MetricPill(
+                  title: 'hours_stat_value'.tr,
+                  subtitle: 'hours_stat_label'.tr,
+                ),
                 Container(
                   width: 1,
                   height: 24.h,
                   color: Colors.white.withValues(alpha: 0.1),
                 ),
                 _MetricPill(
-                  title: '$totalLessons درساً',
-                  subtitle: 'محاضرة مسجلة',
+                  title: '$totalLessons',
+                  subtitle: 'lectures_stat_label'.tr,
                 ),
                 Container(
                   width: 1,
@@ -521,8 +528,8 @@ class _HeroMediaCard extends StatelessWidget {
                   color: Colors.white.withValues(alpha: 0.1),
                 ),
                 _MetricPill(
-                  title: 'أوفلاين',
-                  subtitle: 'Hive Sync',
+                  title: 'offline_stat_value'.tr,
+                  subtitle: 'offline_stat_label'.tr,
                   highlightColor: StitchColors.tertiaryFixed,
                 ),
               ],
@@ -539,7 +546,7 @@ class _HeroMediaCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'نسبة الإنجاز الكلية',
+                          'overall_progress'.tr,
                           style: TextStyle(
                             fontFamily: 'Cairo',
                             color: StitchColors.inverseOnSurface,
@@ -720,7 +727,7 @@ class _SequentialLearningBanner extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'قاعدة الفتح التتابعي للمحاضرات',
+                  'sequential_rule_title'.tr,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     color: StitchColors.onSurface,
@@ -730,7 +737,7 @@ class _SequentialLearningBanner extends StatelessWidget {
                 ),
                 SizedBox(height: 2.h),
                 Text(
-                  'يتطلب فتح كل درس تلقائياً استكمال 90% على الأقل من المحاضرة السابقة لضمان جودة الاستيعاب الأكاديمي.',
+                  'sequential_rule_desc'.tr,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     color: StitchColors.onSurfaceVariant,

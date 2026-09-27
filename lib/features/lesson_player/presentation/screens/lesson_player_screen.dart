@@ -232,7 +232,7 @@ class LessonPlayerScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'يعمل دون إنترنت (Offline Playback)',
+                  'works_offline'.tr,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     color: StitchColors.tertiaryFixed,
@@ -422,8 +422,8 @@ class LessonPlayerScreen extends StatelessWidget {
                     children: [
                       Text(
                         isComp
-                            ? 'تم إكمال الدرس بنجاح (100%)'
-                            : 'نسبة الإكمال التلقائي: هدف 90%',
+                            ? 'auto_complete_success_title'.tr
+                            : 'auto_complete_target_title'.tr,
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           color: isComp
@@ -443,7 +443,7 @@ class LessonPlayerScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(4.r),
                         ),
                         child: Text(
-                          isComp ? 'مكتمل' : 'نشط',
+                          isComp ? 'status_completed'.tr : 'status_active'.tr,
                           style: TextStyle(
                             fontFamily: 'Cairo',
                             color: Colors.white,
@@ -457,8 +457,8 @@ class LessonPlayerScreen extends StatelessWidget {
                   SizedBox(height: 2.h),
                   Text(
                     isComp
-                        ? 'تم فتح المحاضرة التالية تلقائياً وتسجيل الإنجاز في Hive.'
-                        : 'عند الوصول إلى 90% من مدة المحاضرة، سيتم إكمال الدرس تلقائياً وفتح المحاضرة التالية.',
+                        ? 'auto_complete_success_desc'.tr
+                        : 'auto_complete_target_desc'.tr,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       color: isComp
@@ -541,7 +541,7 @@ class LessonPlayerScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'استشاري جراحة وأستاذ مشارك',
+                    'instructor_title'.tr,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       color: StitchColors.onSurfaceVariant,
@@ -567,7 +567,7 @@ class LessonPlayerScreen extends StatelessWidget {
                 ),
                 SizedBox(width: 4.w),
                 Text(
-                  'تدوين ملاحظة',
+                  'take_note'.tr,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     color: StitchColors.primary,
@@ -608,7 +608,7 @@ class LessonPlayerScreen extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  'محتويات الوحدة',
+                  'tab_module_contents'.tr,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     color: StitchColors.primary,
@@ -622,7 +622,7 @@ class LessonPlayerScreen extends StatelessWidget {
           Expanded(
             child: Center(
               child: Text(
-                'ملخص المحاضرة',
+                'tab_lecture_summary'.tr,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   color: StitchColors.onSurfaceVariant,
@@ -635,7 +635,7 @@ class LessonPlayerScreen extends StatelessWidget {
           Expanded(
             child: Center(
               child: Text(
-                'الملاحظات (4)',
+                'tab_notes'.tr,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   color: StitchColors.onSurfaceVariant,
@@ -716,8 +716,10 @@ class LessonPlayerScreen extends StatelessWidget {
                       ),
                       Text(
                         isCurrent
-                            ? 'المحاضرة الحالية • جاري التشغيل'
-                            : (isCompleted ? 'مكتمل 100%' : 'المحاضرة التالية'),
+                            ? 'current_playing_lecture'.tr
+                            : (isCompleted
+                                ? 'status_completed'.tr
+                                : 'next_lesson'.tr),
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           color: isCompleted
@@ -852,7 +854,7 @@ class LessonPlayerScreen extends StatelessWidget {
                     ),
                     SizedBox(width: 6.w),
                     Text(
-                      'مخزن في ذاكرة الهاتف Hive • متاح أوفلاين',
+                      'stored_in_hive_memory'.tr,
                       style: TextStyle(
                         fontFamily: 'Cairo',
                         color: StitchColors.onSurfaceVariant,
@@ -862,7 +864,7 @@ class LessonPlayerScreen extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  'جاهز',
+                  'status_ready'.tr,
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     color: StitchColors.tertiary,

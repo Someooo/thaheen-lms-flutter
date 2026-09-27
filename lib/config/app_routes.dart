@@ -18,7 +18,7 @@ class AppRoutes {
   static final List<GetPage<dynamic>> pages = <GetPage<dynamic>>[
     GetPage<dynamic>(
       name: initial,
-      page: () => const SplashPage(),
+      page: () => const SplashScreen(),
     ),
     GetPage<dynamic>(
       name: courses,

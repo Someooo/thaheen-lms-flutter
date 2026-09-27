@@ -90,7 +90,7 @@ class LessonTile extends StatelessWidget {
                         if (!locked) ...[
                           SizedBox(width: 8.w),
                           Text(
-                            'محفوظة في Hive',
+                            'saved_in_hive'.tr,
                             style: TextStyle(
                               fontFamily: 'Cairo',
                               fontSize: 9.sp,
@@ -300,7 +300,7 @@ class _StatusPill extends StatelessWidget {
               ),
               SizedBox(width: 3.w),
               Text(
-                'جاهز للبدء',
+                'status_ready_to_start'.tr,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   color: StitchColors.secondary,

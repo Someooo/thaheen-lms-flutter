@@ -1,15 +1,16 @@
+import '../../../../core/localization/localized_content.dart';
 import '../../domain/entities/lesson.dart';
 
 class LessonModel {
   final String id;
-  final String title;
+  final LocalizedContent localizedTitle;
   final String duration;
   final String videoAsset;
   final int order;
 
   const LessonModel({
     required this.id,
-    required this.title,
+    required this.localizedTitle,
     required this.duration,
     required this.videoAsset,
     required this.order,
@@ -18,7 +19,7 @@ class LessonModel {
   factory LessonModel.fromJson(Map<String, dynamic> json) {
     return LessonModel(
       id: json['id'] as String,
-      title: json['title'] as String,
+      localizedTitle: LocalizedContent.fromJson(json['title']),
       duration: json['duration'] as String,
       videoAsset: json['videoAsset'] as String,
       order: json['order'] as int,
@@ -28,7 +29,7 @@ class LessonModel {
   Lesson toEntity() {
     return Lesson(
       id: id,
-      title: title,
+      localizedTitle: localizedTitle,
       duration: duration,
       videoAsset: videoAsset,
       order: order,

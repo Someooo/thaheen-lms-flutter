@@ -6,22 +6,23 @@ import '../../../../config/app_routes.dart';
 import '../../../../config/stitch_colors.dart';
 import '../../../../core/controllers/language_controller.dart';
 
-class SplashPage extends StatefulWidget {
-  const SplashPage({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateMixin {
-  late final AnimationController _pulseController;
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _pulseController;
 
   @override
   void initState() {
     super.initState();
     _pulseController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2000),
+      duration: const Duration(milliseconds: 2200),
     )..repeat(reverse: true);
 
     _startTransitionTimer();
@@ -61,92 +62,93 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
             ),
             Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                        decoration: BoxDecoration(
-                          color: StitchColors.surfaceContainerLow.withValues(alpha: 0.8),
-                          borderRadius: BorderRadius.circular(20.r),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              width: 6.r,
-                              height: 6.r,
-                              decoration: const BoxDecoration(
-                                color: StitchColors.tertiary,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            SizedBox(width: 6.w),
-                            Text(
-                              isArabic ? 'الخوادم الأكاديمية متصلة' : 'Servers Connected',
-                              style: TextStyle(
-                                fontFamily: 'Cairo',
-                                fontSize: 11.sp,
-                                fontWeight: FontWeight.w600,
-                                color: StitchColors.onSurfaceVariant,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          final langCtrl = Get.find<LanguageController>();
-                          langCtrl.changeLanguage(isArabic ? 'en' : 'ar');
-                        },
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
-                          decoration: BoxDecoration(
-                            color: StitchColors.surfaceContainerLowest,
-                            borderRadius: BorderRadius.circular(20.r),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.05),
-                                blurRadius: 4,
-                                offset: const Offset(0, 1),
-                              ),
-                            ],
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                isArabic ? 'العربية' : 'English',
-                                style: TextStyle(
-                                  fontFamily: 'Cairo',
-                                  fontSize: 11.sp,
-                                  fontWeight: FontWeight.w700,
-                                  color: StitchColors.primary,
-                                ),
-                              ),
-                              SizedBox(width: 4.w),
-                              Icon(
-                                Icons.translate_rounded,
-                                size: 14.sp,
-                                color: StitchColors.primary,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 Expanded(
                   child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          SizedBox(height: 16.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                                decoration: BoxDecoration(
+                                  color: StitchColors.surfaceContainerLowest,
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withValues(alpha: 0.04),
+                                      blurRadius: 4,
+                                      offset: const Offset(0, 1),
+                                    ),
+                                  ],
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.offline_pin_rounded,
+                                      size: 14.sp,
+                                      color: StitchColors.tertiary,
+                                    ),
+                                    SizedBox(width: 4.w),
+                                    Text(
+                                      'synced_status'.tr,
+                                      style: TextStyle(
+                                        fontFamily: 'Cairo',
+                                        fontSize: 11.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: StitchColors.onSurfaceVariant,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  final langCtrl = Get.find<LanguageController>();
+                                  langCtrl.changeLanguage(isArabic ? 'en' : 'ar');
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                                  decoration: BoxDecoration(
+                                    color: StitchColors.surfaceContainerLowest,
+                                    borderRadius: BorderRadius.circular(20.r),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withValues(alpha: 0.05),
+                                        blurRadius: 4,
+                                        offset: const Offset(0, 1),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        isArabic ? 'العربية' : 'English',
+                                        style: TextStyle(
+                                          fontFamily: 'Cairo',
+                                          fontSize: 11.sp,
+                                          fontWeight: FontWeight.w700,
+                                          color: StitchColors.primary,
+                                        ),
+                                      ),
+                                      SizedBox(width: 4.w),
+                                      Icon(
+                                        Icons.translate_rounded,
+                                        size: 14.sp,
+                                        color: StitchColors.primary,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                           SizedBox(height: 24.h),
                           AnimatedBuilder(
                             animation: _pulseController,
@@ -223,9 +225,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                                 ),
                                 SizedBox(width: 4.w),
                                 Text(
-                                  isArabic
-                                      ? 'بوابة الامتياز الطبي الأكاديمي'
-                                      : 'Medical Academic Portal',
+                                  'splash_portal_tag'.tr,
                                   style: TextStyle(
                                     fontFamily: 'Cairo',
                                     fontSize: 11.sp,
@@ -238,7 +238,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                           ),
                           SizedBox(height: 8.h),
                           Text(
-                            isArabic ? 'مَنَصَّـةُ ذَهِيـن' : 'Thaheen Platform',
+                            'splash_brand_title'.tr,
                             style: TextStyle(
                               fontFamily: 'Cairo',
                               fontSize: 26.sp,
@@ -261,9 +261,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                             ),
                           ),
                           Text(
-                            isArabic
-                                ? 'التعليم الطبي والعلوم الصحية'
-                                : 'Medical & Health Sciences Education',
+                            'splash_field_title'.tr,
                             style: TextStyle(
                               fontFamily: 'Cairo',
                               fontSize: 15.sp,
@@ -275,9 +273,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 16.w),
                             child: Text(
-                              isArabic
-                                  ? 'بيئة رقمية فائقة التخصص تتماشى مع معايير الامتياز الإكلينيكي'
-                                  : 'Specialized digital learning adhering to clinical excellence',
+                              'splash_desc'.tr,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Cairo',
@@ -295,19 +291,19 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                             children: [
                               _buildPill(
                                 dotColor: StitchColors.primary,
-                                title: isArabic ? 'الطب البشري' : 'Medicine',
+                                title: 'spec_medicine'.tr,
                               ),
                               _buildPill(
                                 dotColor: StitchColors.tertiary,
-                                title: isArabic ? 'التمريض' : 'Nursing',
+                                title: 'spec_nursing'.tr,
                               ),
                               _buildPill(
                                 dotColor: StitchColors.secondary,
-                                title: isArabic ? 'الصيدلة الإكلينيكية' : 'Pharmacy',
+                                title: 'spec_pharmacy'.tr,
                               ),
                               _buildPill(
                                 dotColor: StitchColors.primaryContainer,
-                                title: isArabic ? 'السنة التحضيرية' : 'Prep Year',
+                                title: 'spec_prep'.tr,
                               ),
                             ],
                           ),
@@ -348,7 +344,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            isArabic ? 'جاهزية التزامن المحلي' : 'Offline Ready',
+                                            'splash_sync_status'.tr,
                                             style: TextStyle(
                                               fontFamily: 'Cairo',
                                               fontSize: 12.sp,
@@ -357,7 +353,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                                             ),
                                           ),
                                           Text(
-                                            isArabic ? 'تم تحديث المناهج المسجلة' : 'Curriculum Loaded',
+                                            'splash_curriculum_status'.tr,
                                             style: TextStyle(
                                               fontFamily: 'Cairo',
                                               fontSize: 10.sp,
@@ -403,9 +399,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          isArabic
-                                              ? 'الدخول إلى الفضاء التعليمي'
-                                              : 'Enter Learning Portal',
+                                          'splash_enter_portal'.tr,
                                           style: TextStyle(
                                             fontFamily: 'Cairo',
                                             fontSize: 13.sp,
@@ -442,9 +436,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                       ),
                       SizedBox(width: 6.w),
                       Text(
-                        isArabic
-                            ? 'متوافق مع وضع عدم الاتصال (Offline Ready)'
-                            : 'Fully Compatible with Offline Mode',
+                        'splash_offline_compat'.tr,
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           fontSize: 10.sp,

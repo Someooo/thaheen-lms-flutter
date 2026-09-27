@@ -53,7 +53,7 @@ class CourseCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _TopMeta(),
+                  const _TopMeta(),
                   SizedBox(height: 2.h),
                   Text(
                     course.title,
@@ -167,7 +167,7 @@ class _TopMeta extends StatelessWidget {
             borderRadius: BorderRadius.circular(4.r),
           ),
           child: Text(
-            'طب بشري',
+            'badge_human_medicine'.tr,
             style: TextStyle(
               fontFamily: 'Cairo',
               color: StitchColors.onSecondaryContainer,
@@ -203,7 +203,7 @@ class _ProgressIndicator extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'التقدم في المقرر',
+              'course_progress_label'.tr,
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 9.sp,

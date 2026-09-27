@@ -1,14 +1,15 @@
+import '../../../../core/localization/localized_content.dart';
 import '../../domain/entities/section.dart';
 import 'lesson_model.dart';
 
 class SectionModel {
   final String id;
-  final String title;
+  final LocalizedContent localizedTitle;
   final List<LessonModel> lessons;
 
   const SectionModel({
     required this.id,
-    required this.title,
+    required this.localizedTitle,
     required this.lessons,
   });
 
@@ -19,7 +20,7 @@ class SectionModel {
 
     return SectionModel(
       id: json['id'] as String,
-      title: json['title'] as String,
+      localizedTitle: LocalizedContent.fromJson(json['title']),
       lessons: lessonList,
     );
   }
@@ -27,7 +28,7 @@ class SectionModel {
   Section toEntity() {
     return Section(
       id: id,
-      title: title,
+      localizedTitle: localizedTitle,
       lessons: lessons.map((l) => l.toEntity()).toList(),
     );
   }

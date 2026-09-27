@@ -41,7 +41,7 @@ class ContinueWatchingCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _MediaBanner(course: course),
-              _ProgressTrack(),
+              const _ProgressTrack(),
               _CardDetails(course: course, lesson: lesson),
             ],
           ),
@@ -204,7 +204,7 @@ class _ProgressTrack extends StatelessWidget {
       width: double.infinity,
       height: 4.h,
       color: StitchColors.surfaceContainerHighest,
-      alignment: Alignment.centerRight,
+      alignment: AlignmentDirectional.centerStart,
       child: FractionallySizedBox(
         widthFactor: 0.68,
         child: Container(
@@ -280,7 +280,7 @@ class _CardDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '68% مكتمل',
+                    'percent_completed'.trParams({'percent': '68'}),
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       color: StitchColors.outline,

@@ -107,7 +107,7 @@ class _TopHeaderBar extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Home',
+                    'home_subtitle'.tr,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       color: StitchColors.onSurfaceVariant,
@@ -200,7 +200,7 @@ class _ClinicalIdentityBar extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'ع',
+                          Get.locale?.languageCode == 'en' ? 'O' : 'ع',
                           style: TextStyle(
                             fontFamily: 'Cairo',
                             color: StitchColors.primary,
@@ -236,7 +236,7 @@ class _ClinicalIdentityBar extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'مرحباً، د. عمر الفهد',
+                        'user_greeting'.tr,
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           fontSize: 14.sp,
@@ -253,7 +253,7 @@ class _ClinicalIdentityBar extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    'السنة الثالثة • طب بشري',
+                    'user_grade'.tr,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       fontSize: 10.sp,
@@ -282,7 +282,7 @@ class _ClinicalIdentityBar extends StatelessWidget {
                     ),
                     SizedBox(width: 4.w),
                     Text(
-                      'متزامن',
+                      'synced_status'.tr,
                       style: TextStyle(
                         fontFamily: 'Cairo',
                         fontSize: 9.sp,
@@ -352,7 +352,7 @@ class _LiveSyncHealthStrip extends StatelessWidget {
               ),
               SizedBox(width: 6.w),
               Text(
-                'البيانات متزامنة محلياً (Offline Ready)',
+                'data_synced_locally'.tr,
                 style: TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 10.sp,
@@ -362,7 +362,7 @@ class _LiveSyncHealthStrip extends StatelessWidget {
             ],
           ),
           Text(
-            'Hive Cache v3.4',
+            'hive_cache_version'.tr,
             style: TextStyle(
               fontFamily: 'Cairo',
               fontSize: 10.sp,
@@ -380,7 +380,13 @@ class _SearchAndFilters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chips = ['الكل', 'تشريح', 'فسيولوجي', 'كيمياء حيوية', 'علم الأدوية'];
+    final chips = [
+      'filter_all'.tr,
+      'filter_anatomy'.tr,
+      'filter_physiology'.tr,
+      'filter_biochemistry'.tr,
+      'filter_pharmacology'.tr,
+    ];
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
@@ -409,7 +415,7 @@ class _SearchAndFilters extends StatelessWidget {
                 SizedBox(width: 8.w),
                 Expanded(
                   child: Text(
-                    'ابحث عن المحاضرات، الأعضاء، أو المفاهيم الطبية...',
+                    'search_hint'.tr,
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       fontSize: 10.sp,
@@ -511,7 +517,7 @@ class _SuccessBody extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      'جلسة استذكار نشطة',
+                      'active_study_session'.tr,
                       style: TextStyle(
                         fontFamily: 'Cairo',
                         fontSize: 10.sp,
@@ -545,7 +551,7 @@ class _SuccessBody extends StatelessWidget {
                       ),
                       SizedBox(width: 6.w),
                       Text(
-                        'المقررات المسجلة',
+                        'enrolled_courses'.tr,
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           fontSize: 15.sp,
@@ -556,7 +562,7 @@ class _SuccessBody extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    'عرض الكل (${controller.courses.length})',
+                    'view_all_count'.trParams({'count': '${controller.courses.length}'}),
                     style: TextStyle(
                       fontFamily: 'Cairo',
                       fontSize: 11.sp,
