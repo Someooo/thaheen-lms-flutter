@@ -310,4 +310,5 @@ flutter build apk --release
 
 ## Time Spent
 
-**Approximately 8–10 hours** total across project setup, offline data architecture, Hive integration, video player controls, Stitch medical UI implementation, bilingual localization, and test suite verification.
+Approximately 4–6 hours total across project setup, offline data architecture, Hive integration, video player controls, Stitch medical UI implementation, bilingual localization, and test suite verification.
+
