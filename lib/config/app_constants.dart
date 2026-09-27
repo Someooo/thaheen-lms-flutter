@@ -1,4 +1,3 @@
-// Holds global constant values shared across the application.
 class AppConstants {
-  static const String appName = 'My Template App';
+  static const String appName = 'Thaheen LMS';
 }

@@ -6,10 +6,6 @@ import '../../../../core/errors/exceptions.dart';
 import '../models/course_model.dart';
 
 abstract class CoursesLocalDataSource {
-  /// Loads and parses the bundled [assets/data/courses.json] file.
-  ///
-  /// Returns a list of [CourseModel] objects.
-  /// Throws [CacheException] if the asset cannot be loaded or the JSON is malformed.
   Future<List<CourseModel>> getCourses();
 }
 
