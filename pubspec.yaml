@@ -14,21 +14,14 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   get: ^4.6.6
-  get_storage: ^2.1.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  firebase_core: ^2.25.4
-  firebase_analytics: ^10.10.4
-  firebase_crashlytics: ^3.5.4
-  dio: ^5.4.3
-  fpdart: ^1.1.1
   flutter_screenutil: ^5.9.0
   intl: ^0.20.2
   equatable: ^2.0.5
-  cached_network_image_plus: ^0.0.5
   flutter_native_splash: ^2.4.7
   connectivity_plus: ^6.1.4
-  shimmer: ^3.0.0
+  video_player: ^2.11.1
   # flutter_glass_morphism: ^1.0.2
 
 
@@ -38,6 +31,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   build_runner: ^2.4.14
   mocktail: ^1.0.3
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true
@@ -47,25 +41,35 @@ flutter:
     - assets/images/smart_steps_for_information_technology_logo.jpg
     - assets/images/smart_steps_for_information_technology_logo-removebg-preview.png
     - assets/images/transparent.png
+    - "assets/images/Thaheen logo.jpg"
+    - assets/videos/
+    - assets/data/
   # assets:
   #   - assets/images/
   #   - assets/icons/
   #   - assets/animations/
   #   - assets/svgs/
   #   - assets/fonts/s
-  # fonts:
-  #   - family: Urbanist
-  #     fonts:
-  #       - asset: assets/fonts/Urbanist-Regular.ttf
-  #       - asset: assets/fonts/Urbanist-Medium.ttf
-  #         weight: 500
-  #       - asset: assets/fonts/Urbanist-SemiBold.ttf
-  #         weight: 600
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/cairo/cairo_regular.ttf
+          weight: 400
+        - asset: assets/fonts/cairo/cairo_medium.ttf
+          weight: 500
+        - asset: assets/fonts/cairo/cairo_semibold.ttf
+          weight: 600
+        - asset: assets/fonts/cairo/cairo_bold.ttf
+          weight: 700
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: assets/images/transparent.png
   android_12:
     color: "#FFFFFF"
-    image: assets/images/transparent.png
-    icon_background_color: "#FFFFFF"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/Thaheen logo.jpg"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/images/Thaheen logo.jpg"

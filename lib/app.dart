@@ -21,7 +21,7 @@ class AppEntrypoint extends StatelessWidget {
       minTextAdapt: true,
       builder: (context, child) {
         return GetMaterialApp(
-          title: 'My Template App',
+          title: 'Thaheen',
           debugShowCheckedModeBanner: false,
 
           initialRoute: AppRoutes.initial,

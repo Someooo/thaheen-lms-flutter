@@ -10,6 +10,7 @@ class AppTheme {
   static ThemeData get dark => _darkTheme;
 
   static ThemeData get _lightTheme => ThemeData(
+        fontFamily: 'Cairo',
         useMaterial3: true,
         scaffoldBackgroundColor: AppLightColors.appBackgroundColor,
         primaryColor: AppLightColors.primaryColor,
@@ -139,6 +140,7 @@ class AppTheme {
       );
 
   static ThemeData get _darkTheme => ThemeData(
+        fontFamily: 'Cairo',
         useMaterial3: true,
         scaffoldBackgroundColor: AppDarkColors.backgroundColor,
         primaryColor: AppDarkColors.primaryColor,

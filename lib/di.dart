@@ -5,7 +5,6 @@ import 'package:my_template/core/controllers/theme_controller.dart';
 import 'package:my_template/core/controllers/language_controller.dart';
 import 'package:my_template/core/services/network_service.dart';
 import 'package:my_template/core/services/storage_service.dart';
-import 'package:my_template/core/network/api_client.dart';
 
 Future<void> configureDependencies() async {
   // Global permanent service
@@ -13,7 +12,6 @@ Future<void> configureDependencies() async {
 
   // Lazy-loaded global services / controllers
   Get.lazyPut<StorageService>(() => StorageService(), fenix: true);
-  Get.lazyPut<ApiClient>(() => ApiClient(), fenix: true);
   Get.lazyPut<ThemeController>(() => ThemeController(), fenix: true);
   Get.lazyPut<LanguageController>(() => LanguageController(), fenix: true);
 }

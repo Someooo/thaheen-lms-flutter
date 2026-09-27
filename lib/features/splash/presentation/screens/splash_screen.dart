@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import '../../../../config/app_routes.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -20,7 +18,7 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> _navigateToHome() async {
     await Future.delayed(const Duration(seconds: 2));
     if (mounted) {
-      Get.offAllNamed(AppRoutes.products);
+      // Get.offAllNamed(AppRoutes.home); // TODO: implement home route
     }
   }
 
@@ -33,7 +31,7 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/smart_steps_for_information_technology_logo-removebg-preview.png',
+              'assets/images/Thaheen logo.jpg',
               width: 240.w,
               fit: BoxFit.contain,
             ),
